@@ -5,15 +5,23 @@ layout(triangle_strip, max_vertices = 3) out;
 in vec3 normal[];
 out vec3 normal_F;
 
+in vec3 position[];
+out vec3 position_F;
+
 void main() {
+
+    vec3 flatnormal = normalize(cross(gl_in[1].gl_Position.xyz-gl_in[0].gl_Position.xyz, gl_in[2].gl_Position.xyz-gl_in[0].gl_Position.xyz));
     gl_Position = gl_in[0].gl_Position;
-    normal_F = normal[0];
+    normal_F = flatnormal;
+    position_F = position[0];
     EmitVertex();
     gl_Position = gl_in[1].gl_Position;
-    normal_F = normal[1];
+    normal_F = flatnormal;
+    position_F = position[1];   
     EmitVertex();
     gl_Position = gl_in[2].gl_Position;
-    normal_F = normal[2];
+    normal_F = flatnormal;
+    position_F = position[2];
     EmitVertex();
     EndPrimitive();
 }

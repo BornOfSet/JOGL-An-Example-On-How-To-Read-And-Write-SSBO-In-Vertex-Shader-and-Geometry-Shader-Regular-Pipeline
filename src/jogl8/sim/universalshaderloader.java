@@ -27,7 +27,7 @@ public class universalshaderloader {
 		ByteBuffer b = ByteBuffer.allocate(512);
 		gl.glGetShaderInfoLog(what, 512, null, b);
 		byte[] ba = b.array();
-		utils.log(additionalinfo + " Compile Error_____:  " + new String(ba));
+		utils.log(additionalinfo + " Compile Error:  " + new String(ba));
 	}
 	
 	//将特定的着色器绑定到给定的程序上
@@ -48,9 +48,9 @@ public class universalshaderloader {
 		gl.glShaderSource(vs, 1, vsrc, null);
 		gl.glShaderSource(gs, 1, gsrc, null);
 		gl.glShaderSource(fs, 1, fsrc, null);
-		Compile(gl, vs, "vertex");
-		Compile(gl, gs, "geometry");
-		Compile(gl, fs, "fragment");
+		Compile(gl, vs, "Vertex   	  ");
+		Compile(gl, gs, "Geometry	  ");
+		Compile(gl, fs, "Fragment	  ");
 		gl.glAttachShader(shadingprogram, vs);
 		gl.glAttachShader(shadingprogram, gs);
 		gl.glAttachShader(shadingprogram, fs);

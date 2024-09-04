@@ -9,7 +9,9 @@ public class buildgrid {
 	AiMesh self;
 	float minmove = -0.02f;
 	float maxmove = 0.02f;
-	float unitsize = 0.05f;
+	float unitsize = 0.1f;
+	float auto = 5;
+	boolean useAuto = false;
 	
 	public buildgrid(AiMesh x) {
 		self = x;
@@ -41,6 +43,7 @@ public class buildgrid {
 		if(c>=w) receive.setZ(c);
 	}
 	
+	//独立函数应该降低对参数的依赖度，降低耦合度
 	public Vec3[] func() {
 		
 		Vec3 max = new Vec3(Float.MIN_VALUE);
@@ -50,11 +53,13 @@ public class buildgrid {
 			percless(min,p);
 			percgreat(max,p);
 		}
+		this.auto = max.minus(min).length()/this.auto;
 		min = min.plus(minmove);
 		max = max.plus(maxmove);
 		utils.logv(min.getArray(),"MIN");
 		utils.logv(max.getArray(),"MAX");
 		Vec3 range = max.minus(min);
+		if(this.useAuto) unitsize = this.auto;
 		int xcount = (int) Math.ceil(range.getX()/unitsize);//计算的就是盒子的数量，不是挡板的数量
 		int ycount = (int) Math.ceil(range.getY()/unitsize);
 		int zcount = (int) Math.ceil(range.getZ()/unitsize);
