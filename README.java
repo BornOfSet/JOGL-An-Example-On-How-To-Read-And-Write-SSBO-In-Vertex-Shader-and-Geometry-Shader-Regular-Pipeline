@@ -23,7 +23,7 @@
 
 注意，默认我们使用的模型是强行合并所有位置相同的点当成同一个点的
 这是因为导入ASSIMP的时候它并不会严格意义上合并相同顶点。假设有相同坐标法线uv的同一个点参与多个图元的组成，ASSIMP会为每个图元拷贝一份该顶点
-https://www.bilibili.com/video/BV13eHneoEWq/?spm_id_from=333.999.0.0&vd_source=0b33afa454d0c1a1fd4a40955e2f2bad
+https://www.bilibili.com/video/BV13eHneoEWq
 不建议更改这部分设置，因为原数据并非根据法线或者UV拆的，而是遇到边就拆，这会造成极大量的浪费
 
 如果想恢复ASSIMP的设置：
